@@ -7,5 +7,6 @@ namespace Library.Entities
     public class Writer
     {
         public int Id { get; set; }
+        public string Code { get; set; }
     }
 }

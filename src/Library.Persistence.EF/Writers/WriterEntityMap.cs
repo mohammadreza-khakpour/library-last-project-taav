@@ -12,6 +12,7 @@ namespace Library.Persistence.EF.Writers
         public void Configure(EntityTypeBuilder<Writer> builder)
         {
             builder.HasKey(_=>_.Id);
+            builder.Property(_=>_.Code).HasMaxLength(10);
         }
     }
 }

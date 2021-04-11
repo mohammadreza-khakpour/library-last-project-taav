@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Folder Include="BookCategories\Exceptions\" />
+    <Folder Include="Books\Exceptions\" />
   </ItemGroup>
 
   <ItemGroup>
