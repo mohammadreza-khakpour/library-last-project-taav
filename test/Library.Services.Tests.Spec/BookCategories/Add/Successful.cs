@@ -9,15 +9,16 @@ using Library.Services.BookCategories;
 using Library.Persistence.EF.BookCategories;
 using Library.Services.BookCategories.Contracts;
 using FluentAssertions;
+using Library.Infrastructure.Application;
 
 namespace Library.Services.Tests.Spec.BookCategories.Add
 {
     public class Successful
     {
         private EFInMemoryDatabase db;
-        private EFBookCategoryRepository efBookCategoryRepository;
-        private EFUnitOfWork efUnitOfWork;
-        private BookCategoryAppService sut;
+        private BookCategoryRepository efBookCategoryRepository;
+        private UnitOfWork efUnitOfWork;
+        private BookCategoryService sut;
         private EFDataContext context;
         public Successful()
         {

@@ -30,5 +30,13 @@ namespace Library.Services.Books
             _unitOfWork.Complete();
             return book.Id;
         }
+
+        public int Update(int id, UpdateBookDto dto)
+        {
+            Book theBook = _bookRepository.FindById(id);
+            theBook.Title = dto.Title;
+            _unitOfWork.Complete();
+            return theBook.Id;
+        }
     }
 }

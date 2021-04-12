@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using Xunit;
 
-namespace Library.Services.Tests.Spec.Books.Add
+namespace Library.Services.Tests.Spec.Books.Update
 {
     public class Successful
     {
@@ -22,7 +22,7 @@ namespace Library.Services.Tests.Spec.Books.Add
         private BookService sut;
         private EFDataContext context;
         private BookCategory bookCategory;
-        private Writer writer;
+        private Book book;
         private int actualRecordId;
         public Successful()
         {
@@ -32,43 +32,41 @@ namespace Library.Services.Tests.Spec.Books.Add
             efUnitOfWork = new EFUnitOfWork(context);
             sut = new BookAppService(efBookRepository, efUnitOfWork);
         }
-        // Given[("یک دسته بندی  کتاب های رمان در لیست دسته بندی کتابها وجود دارد")]
+        // Given[("یک دسته بندی  کتاب های تاریخی در لیست دسته بندی کتابها وجود دارد.
+        // و تنها یک کتاب با عنوان جنگ جهانی دوم  با،
+        // دسته بندی کتاب های تاریخی در فهرست کتابها وجود دارد")]
         private void Given()
         {
-            bookCategory = new BookCategory() { 
-                Title = "کتابهای رمان"
+            bookCategory = new BookCategory()
+            {
+                Title = "کتابهای تاریخی"
             };
             context.BookCategories.Add(bookCategory);
-            writer = new Writer() {
-                Code = "123abc"
+            book = new Book() { 
+                Title = "جنگ جهانی دوم",
+                Category = bookCategory,
             };
-            context.Writers.Add(writer);
+            context.Books.Add(book);
             context.SaveChanges();
         }
-        // When[("یک کتاب با عنوان شازده کوچولو با، یک نویسنده به کد 01 و دسته سنی  بیست به بالا
-        // و دسته بندی کتاب های رمان تعریف میکنم")]
+        // When[("مشخصات کتاب با عنوان جنگ جهانی دوم را به، عنوان خلاصه جنگ جهانی دوم تغییر میدهم")]
         private void When()
         {
-            
-            AddBookDto dto = new AddBookDto() {
-                Title = "شازده کوچولو",
-                WriterId = writer.Id,
-                AgeRange = AgeRange.twentyToOlder,
-                CategoryId = bookCategory.Id
+            UpdateBookDto dto = new UpdateBookDto()
+            {
+                Title = "خلاصه جنگ جهانی دوم",
             };
-            actualRecordId = sut.Add(dto);
+            actualRecordId = sut.Update(book.Id,dto);
         }
-        // Then[("باید فقط یک کتاب با عنوان شازده کوچولو با، یک نویسنده به کد 01
-        // و دسته سنی  بیست به بالا و دسته بندی کتاب های رمان  در فهرست کتابها وجود داشته باشد")]
+        // Then[("باید فقط یک کتاب با عنوان خلاصه جنگ جهانی دوم
+        // و دسته بندی کتاب های تاریخی در فهرست کتابها وجود داشته باشد")]
+        //
         private void Then()
         {
             var listOfBooks = context.Books.ToList();
             listOfBooks.Should().HaveCount(1);
             var expected = context.Books.Single(_ => _.Id == actualRecordId);
-            expected.Title.Should().Be("شازده کوچولو");
-            expected.Writer.Code.Should().Be(writer.Code);
-            expected.AgeRange.Should().Be(AgeRange.twentyToOlder);
-            expected.Category.Title.Should().Be(bookCategory.Title);
+            expected.Title.Should().Be("خلاصه جنگ جهانی دوم");
         }
         [Fact]
         public void Run()

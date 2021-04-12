@@ -4,9 +4,8 @@ using System.Text;
 
 namespace Library.Services.Books.Contracts
 {
-    public interface BookService
+    public class UpdateBookDto
     {
-        int Add(AddBookDto dto);
-        int Update(int id, UpdateBookDto dto);
+        public string Title { get; set; }
     }
 }

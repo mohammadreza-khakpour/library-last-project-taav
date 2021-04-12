@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Library.Infrastructure.Application;
 using Library.Infrastructure.Test;
 using Library.Persistence.EF;
 using Library.Persistence.EF.Members;
@@ -15,9 +16,9 @@ namespace Library.Services.Tests.Spec.Members.Add
     public class Successful
     {
         private EFInMemoryDatabase db;
-        private EFMemberRepository efMemberRepository;
-        private EFUnitOfWork efUnitOfWork;
-        private MemberAppService sut;
+        private MemberRepository efMemberRepository;
+        private UnitOfWork efUnitOfWork;
+        private MemberService sut;
         private EFDataContext context;
         private int actualRecordId;
         public Successful()
