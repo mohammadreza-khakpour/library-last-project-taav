@@ -8,5 +8,6 @@ namespace Library.Services.Books.Contracts
     {
         int Add(AddBookDto dto);
         int Update(int id, UpdateBookDto dto);
+        void BorrowBook(int bookId);
     }
 }

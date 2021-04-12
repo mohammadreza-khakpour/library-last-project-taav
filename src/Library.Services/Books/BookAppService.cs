@@ -31,6 +31,13 @@ namespace Library.Services.Books
             return book.Id;
         }
 
+        public void BorrowBook(int bookId)
+        {
+            var theBook = _bookRepository.FindById(bookId);
+            _bookRepository.BorrowBook(theBook.Title);
+            _unitOfWork.Complete();
+        }
+
         public int Update(int id, UpdateBookDto dto)
         {
             Book theBook = _bookRepository.FindById(id);

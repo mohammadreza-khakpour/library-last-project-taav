@@ -19,6 +19,15 @@ namespace Library.Persistence.EF.Books
             _dBContext.Books.Add(book);
         }
 
+        public void BorrowBook(string bookTitle)
+        {
+            BorrowedBook borrowedBook = new BorrowedBook() {
+                Title = bookTitle,
+                ReturnDate = DateTime.Parse("02/02/2021")
+            };
+            _dBContext.BorrowedBooks.Add(borrowedBook);
+        }
+
         public Book FindById(int id)
         {
             return _dBContext.Books.FirstOrDefault(_=>_.Id==id);
