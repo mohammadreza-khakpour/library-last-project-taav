@@ -9,6 +9,5 @@ namespace Library.Services.Books.Contracts
     {
         void Add(Book book);
         Book FindById(int id);
-        void BorrowBook(string bookTitle);
     }
 }

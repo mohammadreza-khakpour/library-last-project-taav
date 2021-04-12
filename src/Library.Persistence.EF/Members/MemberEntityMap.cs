@@ -14,6 +14,7 @@ namespace Library.Persistence.EF.Members
             builder.HasKey(_ => _.Id);
             builder.Property(_ => _.Address).IsUnicode().HasMaxLength(100);
             builder.Property(_ => _.Age);
+            //builder.Property(_ => _.AgeRange);
             builder.Property(_ => _.Fullname).IsUnicode().HasMaxLength(50);
         }
     }
