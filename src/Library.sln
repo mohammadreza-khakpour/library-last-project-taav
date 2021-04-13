@@ -5,13 +5,15 @@ VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Entities", "Library.Entities\Library.Entities.csproj", "{24BAAEBA-3922-41BC-A198-7FC7ADE12ECA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Persistence.EF", "Library.Persistence.EF\Library.Persistence.EF.csproj", "{E6CF8184-2283-467B-9B65-C4F9E301FFDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Persistence.EF", "Library.Persistence.EF\Library.Persistence.EF.csproj", "{E6CF8184-2283-467B-9B65-C4F9E301FFDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Services.Tests.Spec", "..\test\Library.Services.Tests.Spec\Library.Services.Tests.Spec.csproj", "{7A0BA06D-4D20-469B-AF14-E8054468E630}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Services.Tests.Spec", "..\test\Library.Services.Tests.Spec\Library.Services.Tests.Spec.csproj", "{7A0BA06D-4D20-469B-AF14-E8054468E630}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Infrastructure", "Library.Infrastructure\Library.Infrastructure.csproj", "{D91CF289-4394-44AC-B87B-0FA261173529}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Infrastructure", "Library.Infrastructure\Library.Infrastructure.csproj", "{D91CF289-4394-44AC-B87B-0FA261173529}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Services", "Library.Services\Library.Services.csproj", "{7C2ABA1B-3CC5-4060-B902-FCDD71C18EE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Services", "Library.Services\Library.Services.csproj", "{7C2ABA1B-3CC5-4060-B902-FCDD71C18EE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Services.Tests.Unit", "..\test\Library.Services.Tests.Unit\Library.Services.Tests.Unit.csproj", "{42690B8C-B9DF-4365-B69F-300E0E4EDA6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{7C2ABA1B-3CC5-4060-B902-FCDD71C18EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C2ABA1B-3CC5-4060-B902-FCDD71C18EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C2ABA1B-3CC5-4060-B902-FCDD71C18EE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42690B8C-B9DF-4365-B69F-300E0E4EDA6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42690B8C-B9DF-4365-B69F-300E0E4EDA6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42690B8C-B9DF-4365-B69F-300E0E4EDA6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42690B8C-B9DF-4365-B69F-300E0E4EDA6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
