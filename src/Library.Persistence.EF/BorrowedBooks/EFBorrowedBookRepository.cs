@@ -22,9 +22,14 @@ namespace Library.Persistence.EF.BorrowedBooks
             _dBContext.BorrowedBooks.Add(borrowedBook);
         }
 
-        public Book FindById(int bookId)
+        public void Delete(BorrowedBook borrowedBook)
         {
-            return _dBContext.Books.Find(bookId);
+            _dBContext.BorrowedBooks.Remove(borrowedBook);
+        }
+
+        public BorrowedBook FindById(int bookId)
+        {
+            return _dBContext.BorrowedBooks.Find(bookId);
         }
     }
 }

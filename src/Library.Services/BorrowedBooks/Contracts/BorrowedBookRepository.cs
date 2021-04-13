@@ -4,7 +4,8 @@ namespace Library.Services.BorrowedBooks
 {
     public interface BorrowedBookRepository
     {
-        Book FindById(int bookId);
+        BorrowedBook FindById(int bookId);
         void Add(string title);
+        void Delete(BorrowedBook borrowedBook);
     }
 }

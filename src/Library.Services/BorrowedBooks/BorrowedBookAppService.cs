@@ -27,5 +27,17 @@ namespace Library.Services.BorrowedBooks
             _borrowedBookRepository.Add(dto.BookTitle);
             _unitOfWork.Complete();
         }
+
+        public void Delete(int id)
+        {
+            var theBorrowedBook = _borrowedBookRepository.FindById(id);
+            int compareDatesResult = theBorrowedBook.ReturnDate.CompareTo(DateTime.Now);
+            _borrowedBookRepository.Delete(theBorrowedBook);
+            _unitOfWork.Complete();
+            if (compareDatesResult<0)
+            {
+                throw new BorrowedBookReturnedAfterReturnDateException();
+            }
+        }
     }
 }
