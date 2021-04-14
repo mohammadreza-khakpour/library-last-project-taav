@@ -19,12 +19,12 @@ namespace Library.Services.Books
         }
         public int Add(AddBookDto dto)
         {
+
             Book book = new Book()
             {
                 Title = dto.Title,
                 AgeRange = dto.AgeRange,
                 CategoryId = dto.CategoryId,
-                WriterId = dto.WriterId
             };
             _bookRepository.Add(book);
             _unitOfWork.Complete();
@@ -35,6 +35,7 @@ namespace Library.Services.Books
         {
             Book theBook = _bookRepository.FindById(id);
             theBook.Title = dto.Title;
+            theBook.AgeRange = dto.AgeRange;
             _unitOfWork.Complete();
             return theBook.Id;
         }

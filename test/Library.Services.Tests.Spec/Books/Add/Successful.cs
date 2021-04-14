@@ -22,7 +22,6 @@ namespace Library.Services.Tests.Spec.Books.Add
         private BookService sut;
         private EFDataContext context;
         private BookCategory bookCategory;
-        private Writer writer;
         private int actualRecordId;
         public Successful()
         {
@@ -39,34 +38,28 @@ namespace Library.Services.Tests.Spec.Books.Add
                 Title = "کتابهای رمان"
             };
             context.BookCategories.Add(bookCategory);
-            writer = new Writer() {
-                Code = "123abc"
-            };
-            context.Writers.Add(writer);
             context.SaveChanges();
         }
-        // When[("یک کتاب با عنوان شازده کوچولو با، یک نویسنده به کد 01 و دسته سنی  بیست به بالا
+        // When[("یک کتاب با عنوان شازده کوچولو با،  دسته سنی  بیست به بالا
         // و دسته بندی کتاب های رمان تعریف میکنم")]
         private void When()
         {
             
             AddBookDto dto = new AddBookDto() {
                 Title = "شازده کوچولو",
-                WriterId = writer.Id,
                 AgeRange = AgeRange.twentyToOlder,
                 CategoryId = bookCategory.Id
             };
             actualRecordId = sut.Add(dto);
         }
-        // Then[("باید فقط یک کتاب با عنوان شازده کوچولو با، یک نویسنده به کد 01
-        // و دسته سنی  بیست به بالا و دسته بندی کتاب های رمان  در فهرست کتابها وجود داشته باشد")]
+        // Then[("باید فقط یک کتاب با عنوان شازده کوچولو با
+        // دسته سنی  بیست به بالا و دسته بندی کتاب های رمان  در فهرست کتابها وجود داشته باشد")]
         private void Then()
         {
             var listOfBooks = context.Books.ToList();
             listOfBooks.Should().HaveCount(1);
             var expected = context.Books.Single(_ => _.Id == actualRecordId);
             expected.Title.Should().Be("شازده کوچولو");
-            expected.Writer.Code.Should().Be(writer.Code);
             expected.AgeRange.Should().Be(AgeRange.twentyToOlder);
             expected.Category.Title.Should().Be(bookCategory.Title);
         }

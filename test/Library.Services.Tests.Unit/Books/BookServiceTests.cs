@@ -40,16 +40,11 @@ namespace Library.Services.Tests.Unit.Books
                 Title = "dummy-title",
             };
             context.Manipulate(_=>_.BookCategories.Add(category));
-            Writer writer = new Writer() { 
-                Code="dummy-code"
-            };
-            context.Manipulate(_ => _.Writers.Add(writer));
             AddBookDto dto = new AddBookDto()
             {
                 Title = "dummy-title",
                 AgeRange = AgeRange.oneToTen,
                 CategoryId = category.Id,
-                WriterId = writer.Id
             };
 
             //Act
@@ -58,7 +53,6 @@ namespace Library.Services.Tests.Unit.Books
             //Assert
             var expected = readContext.Books.Single(_ => _.Id == actualReturnedId);
             expected.Title.Should().Be(dto.Title);
-            expected.WriterId.Should().Be(writer.Id);
             expected.AgeRange.Should().Be(dto.AgeRange);
             expected.CategoryId.Should().Be(dto.CategoryId);
         }
@@ -71,16 +65,10 @@ namespace Library.Services.Tests.Unit.Books
                 Title = "dummy-category-title",
             };
             context.Manipulate(_ => _.BookCategories.Add(category));
-            Writer writer = new Writer()
-            {
-                Code = "dummy-writer-code"
-            };
-            context.Manipulate(_ => _.Writers.Add(writer));
             Book book = new Book() {
                 Title = "dummy-title",
                 AgeRange = AgeRange.oneToTen,
                 CategoryId = category.Id,
-                WriterId = writer.Id
             };
             context.Manipulate(_ => _.Books.Add(book));
             UpdateBookDto dto = new UpdateBookDto()
@@ -88,7 +76,6 @@ namespace Library.Services.Tests.Unit.Books
                 Title = "dummy-book-title",
                 AgeRange = AgeRange.oneToTen,
                 CategoryId = category.Id,
-                WriterId = writer.Id
             };
 
             //Act
@@ -97,7 +84,6 @@ namespace Library.Services.Tests.Unit.Books
             //Assert
             var expected = readContext.Books.Single(_=>_.Id==actualReturnedId);
             expected.Title.Should().Be(dto.Title);
-            expected.WriterId.Should().Be(writer.Id);
             expected.AgeRange.Should().Be(dto.AgeRange);
             expected.CategoryId.Should().Be(dto.CategoryId);
         }
