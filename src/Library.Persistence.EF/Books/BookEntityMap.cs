@@ -15,6 +15,7 @@ namespace Library.Persistence.EF.Books
             builder.Property(_=>_.Title).IsUnicode().HasMaxLength(50);
             builder.Property(_ => _.AgeRange);
             builder.HasOne(_ => _.Category);
+            builder.HasOne(_ => _.Writer);
         }
     }
 }
