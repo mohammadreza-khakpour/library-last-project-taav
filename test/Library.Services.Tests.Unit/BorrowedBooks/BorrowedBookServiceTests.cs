@@ -34,30 +34,15 @@ namespace Library.Services.Tests.Unit.BorrowedBooks
         public void Add_add_borrowed_book_properly()
         {
             //Arrange
-            BookCategory category = new BookCategory()
-            {
-                Title = "dummy-category-title",
-            };
+            BookCategory category = BorrowedBookFactory.GenerateDummyBookCategory();
             context.Manipulate(_ => _.BookCategories.Add(category));
-            Writer writer = new Writer()
-            {
-                Code = "dummy-writer-code"
-            };
+            Writer writer = BorrowedBookFactory.GenerateDummyWriter();
             context.Manipulate(_ => _.Writers.Add(writer));
-            Book book = new Book()
-            {
-                Title = "dummy-book-title",
-                AgeRange = AgeRange.oneToTen,
-                CategoryId = category.Id,
-                WriterId = writer.Id
-            };
+            Book book = BorrowedBookFactory.GenerateDummyBook();
+            book.CategoryId = category.Id;
+            book.WriterId = writer.Id;
             context.Manipulate(_ => _.Books.Add(book));
-            Member member = new Member()
-            {
-                Fullname = "dummy-member-name",
-                Age = 9,
-                Address = "dummy-member-address"
-            };
+            Member member = BorrowedBookFactory.GenerateDummyMember();
             context.Manipulate(_ => _.Members.Add(member));
             AddBorrowedBookDto dto = new AddBorrowedBookDto() { 
                 MemberAge = member.Age,
@@ -72,6 +57,35 @@ namespace Library.Services.Tests.Unit.BorrowedBooks
             var expected = readContext.BorrowedBooks.Single(_ => _.Title == dto.BookTitle);
             expected.Title.Should().Be(dto.BookTitle);
             expected.ReturnDate.Should().BeAfter(DateTime.Now);
+        }
+        [Fact]
+        public void Delete_delete_borrowed_book_properly()
+        {
+            //Arrange
+            BookCategory category = BorrowedBookFactory.GenerateDummyBookCategory();
+            context.Manipulate(_ => _.BookCategories.Add(category));
+            Writer writer = BorrowedBookFactory.GenerateDummyWriter();
+            context.Manipulate(_ => _.Writers.Add(writer));
+            Book book = BorrowedBookFactory.GenerateDummyBook();
+            book.CategoryId = category.Id;
+            book.WriterId = writer.Id;
+            context.Manipulate(_ => _.Books.Add(book));
+            Member member = BorrowedBookFactory.GenerateDummyMember();
+            context.Manipulate(_ => _.Members.Add(member));
+            BorrowedBook borrowedBook = new BorrowedBook()
+            {
+                Title = book.Title,
+                ReturnDate = DateTime.Parse("02/02/2022")
+            };
+            context.Manipulate(_=>_.BorrowedBooks.Add(borrowedBook));
+
+            //Act
+            sut.Delete(borrowedBook.Id);
+
+            //Assert
+            var expected = readContext.BorrowedBooks.FirstOrDefault(_ => _.Id == borrowedBook.Id);
+            expected.Should().BeNull();
+
         }
     }
 }
