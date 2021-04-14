@@ -25,7 +25,7 @@ namespace Library.Migrations.Migrations
                 .WithColumn("CategoryId").AsInt32()
                 .ForeignKey("FK_Books_BookCategories", "BookCategories", "Id")
                 .OnDelete(System.Data.Rule.Cascade)
-                .WithColumn("WriterId").AsInt32()
+                .WithColumn("WriterId").AsInt32().Nullable()
                 .ForeignKey("FK_Books_Writers", "Writers", "Id")
                 .OnDelete(System.Data.Rule.Cascade);
             Create.Table("Members")
