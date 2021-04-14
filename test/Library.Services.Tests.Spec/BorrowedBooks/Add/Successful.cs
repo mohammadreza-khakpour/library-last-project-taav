@@ -72,13 +72,14 @@ namespace Library.Services.Tests.Spec.BorrowedBooks.Add
             sut.Add(dto);
         }
         // Then[("باید تنها یک کتاب با عنوان فرگشت
-        // و تاریخ برگشت 2021/02/02 در فهرست کتابهای به امانت داده شده  وجود داشته باشد")]
+        // و تاریخ برگشت پس از 14/04/2021 در فهرست کتابهای به امانت داده شده
+        // وجود داشته باشد")]
         private void Then()
         {
             var listOfBorrowedBooks = context.BorrowedBooks.ToList();
             listOfBorrowedBooks.Should().HaveCount(1);
             var expected = context.BorrowedBooks.Single(_ => _.Title == book.Title);
-            expected.ReturnDate.Should().Be(DateTime.Parse("02/02/2021"));
+            expected.ReturnDate.Should().BeAfter(DateTime.Parse("04/14/2021"));
         }
         [Fact]
         public void Run()

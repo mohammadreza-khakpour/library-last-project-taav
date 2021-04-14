@@ -21,11 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Books\" />
-    <Folder Include="BorrowedBooks\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\src\Library.Persistence.EF\Library.Persistence.EF.csproj" />
     <ProjectReference Include="..\..\src\Library.Services\Library.Services.csproj" />
   </ItemGroup>

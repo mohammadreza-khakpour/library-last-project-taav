@@ -65,6 +65,7 @@ namespace Library.Services.Tests.Spec.BorrowedBooks.Add
             {
                 BookAgeRange = book.AgeRange,
                 BookTitle = book.Title,
+                MemberAge = member.Age
             };
             actualResult = () => sut.Add(dto);
         }
